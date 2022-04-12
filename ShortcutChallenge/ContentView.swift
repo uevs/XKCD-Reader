@@ -8,14 +8,32 @@
 import SwiftUI
 
 struct ContentView: View {
+    
     var body: some View {
-        Text("Hello, world!")
-            .padding()
-    }
-}
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
+        
+        ScrollView {
+            
+            VStack {
+                HStack {
+                    Text("\(Image(systemName: "arrow.down")) Latest First")
+                        .font(.title3)
+                    
+                    Spacer()
+                    
+                    Button {
+                        //
+                    } label: {
+                        Image(systemName: "slider.horizontal.3")
+                    }
+                }
+                .padding([.horizontal,.bottom])
+                
+                Text("Comic Card")
+                    .padding()
+                
+                NavigationLink("Link", destination: {ComicView()})
+            }
+            
+        }
     }
 }

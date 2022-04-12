@@ -11,6 +11,8 @@
 		6F0CA0D62805AD3800616A23 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0CA0D52805AD3800616A23 /* ContentView.swift */; };
 		6F0CA0D82805AD3900616A23 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6F0CA0D72805AD3900616A23 /* Assets.xcassets */; };
 		6F0CA0DB2805AD3900616A23 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6F0CA0DA2805AD3900616A23 /* Preview Assets.xcassets */; };
+		6F0CA0E22805AEAB00616A23 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0CA0E12805AEAB00616A23 /* MainView.swift */; };
+		6F0CA0E42805B16800616A23 /* ComicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0CA0E32805B16800616A23 /* ComicView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +21,8 @@
 		6F0CA0D52805AD3800616A23 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		6F0CA0D72805AD3900616A23 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6F0CA0DA2805AD3900616A23 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		6F0CA0E12805AEAB00616A23 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		6F0CA0E32805B16800616A23 /* ComicView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,7 +56,9 @@
 			isa = PBXGroup;
 			children = (
 				6F0CA0D32805AD3800616A23 /* ShortcutChallengeApp.swift */,
+				6F0CA0E12805AEAB00616A23 /* MainView.swift */,
 				6F0CA0D52805AD3800616A23 /* ContentView.swift */,
+				6F0CA0E32805B16800616A23 /* ComicView.swift */,
 				6F0CA0D72805AD3900616A23 /* Assets.xcassets */,
 				6F0CA0D92805AD3900616A23 /* Preview Content */,
 			);
@@ -137,7 +143,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6F0CA0E42805B16800616A23 /* ComicView.swift in Sources */,
 				6F0CA0D62805AD3800616A23 /* ContentView.swift in Sources */,
+				6F0CA0E22805AEAB00616A23 /* MainView.swift in Sources */,
 				6F0CA0D42805AD3800616A23 /* ShortcutChallengeApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
