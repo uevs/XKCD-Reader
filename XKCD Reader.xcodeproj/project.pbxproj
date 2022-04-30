@@ -21,7 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		6F0CA0D02805AD3800616A23 /* ShortcutChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShortcutChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6F0CA0D02805AD3800616A23 /* XKCD Reader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "XKCD Reader.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F0CA0D32805AD3800616A23 /* ShortcutChallengeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutChallengeApp.swift; sourceTree = "<group>"; };
 		6F0CA0D52805AD3800616A23 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		6F0CA0D72805AD3900616A23 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -49,7 +49,7 @@
 		6F0CA0C72805AD3800616A23 = {
 			isa = PBXGroup;
 			children = (
-				6F0CA0D22805AD3800616A23 /* ShortcutChallenge */,
+				6F0CA0D22805AD3800616A23 /* XKCD Reader */,
 				6F0CA0D12805AD3800616A23 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -57,12 +57,12 @@
 		6F0CA0D12805AD3800616A23 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				6F0CA0D02805AD3800616A23 /* ShortcutChallenge.app */,
+				6F0CA0D02805AD3800616A23 /* XKCD Reader.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		6F0CA0D22805AD3800616A23 /* ShortcutChallenge */ = {
+		6F0CA0D22805AD3800616A23 /* XKCD Reader */ = {
 			isa = PBXGroup;
 			children = (
 				6FD472C4281C857B00735F1B /* Views */,
@@ -72,7 +72,7 @@
 				6F0CA0D72805AD3900616A23 /* Assets.xcassets */,
 				6F0CA0D92805AD3900616A23 /* Preview Content */,
 			);
-			path = ShortcutChallenge;
+			path = "XKCD Reader";
 			sourceTree = "<group>";
 		};
 		6F0CA0D92805AD3900616A23 /* Preview Content */ = {
@@ -99,9 +99,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		6F0CA0CF2805AD3800616A23 /* ShortcutChallenge */ = {
+		6F0CA0CF2805AD3800616A23 /* XKCD Reader */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 6F0CA0DE2805AD3900616A23 /* Build configuration list for PBXNativeTarget "ShortcutChallenge" */;
+			buildConfigurationList = 6F0CA0DE2805AD3900616A23 /* Build configuration list for PBXNativeTarget "XKCD Reader" */;
 			buildPhases = (
 				6F0CA0CC2805AD3800616A23 /* Sources */,
 				6F0CA0CD2805AD3800616A23 /* Frameworks */,
@@ -111,9 +111,9 @@
 			);
 			dependencies = (
 			);
-			name = ShortcutChallenge;
+			name = "XKCD Reader";
 			productName = ShortcutChallenge;
-			productReference = 6F0CA0D02805AD3800616A23 /* ShortcutChallenge.app */;
+			productReference = 6F0CA0D02805AD3800616A23 /* XKCD Reader.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -131,7 +131,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 6F0CA0CB2805AD3800616A23 /* Build configuration list for PBXProject "ShortcutChallenge" */;
+			buildConfigurationList = 6F0CA0CB2805AD3800616A23 /* Build configuration list for PBXProject "XKCD Reader" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -144,7 +144,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				6F0CA0CF2805AD3800616A23 /* ShortcutChallenge */,
+				6F0CA0CF2805AD3800616A23 /* XKCD Reader */,
 			);
 		};
 /* End PBXProject section */
@@ -302,7 +302,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"ShortcutChallenge/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"XKCD Reader/Preview Content\"";
 				DEVELOPMENT_TEAM = 5T9Y5Q5TNK;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -316,7 +316,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.leonardobertinelli.ShortcutChallenge;
+				PRODUCT_BUNDLE_IDENTIFIER = com.leonardobertinelli.XKCDReader;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -331,7 +331,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"ShortcutChallenge/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"XKCD Reader/Preview Content\"";
 				DEVELOPMENT_TEAM = 5T9Y5Q5TNK;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -345,7 +345,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.leonardobertinelli.ShortcutChallenge;
+				PRODUCT_BUNDLE_IDENTIFIER = com.leonardobertinelli.XKCDReader;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -356,7 +356,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		6F0CA0CB2805AD3800616A23 /* Build configuration list for PBXProject "ShortcutChallenge" */ = {
+		6F0CA0CB2805AD3800616A23 /* Build configuration list for PBXProject "XKCD Reader" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6F0CA0DC2805AD3900616A23 /* Debug */,
@@ -365,7 +365,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		6F0CA0DE2805AD3900616A23 /* Build configuration list for PBXNativeTarget "ShortcutChallenge" */ = {
+		6F0CA0DE2805AD3900616A23 /* Build configuration list for PBXNativeTarget "XKCD Reader" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6F0CA0DF2805AD3900616A23 /* Debug */,

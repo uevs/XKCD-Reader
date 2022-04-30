@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:">
+      location = "self:/Users/lnrd/Documents/Projects/ShortcutChallenge/XKCD Reader.xcodeproj">
    </FileRef>
 </Workspace>
