@@ -10,6 +10,9 @@ import SwiftUI
 struct ContentView: View {
     @State var main: Bool
     @State var sortLastFirst: Bool = true
+    @State var showMenu = false
+    @State var showFilters = false
+
     
     let data = (1...500).map { "Item \($0)" }
     
@@ -33,7 +36,7 @@ struct ContentView: View {
                         Spacer()
                         
                         Button {
-                            //Sort
+                            showFilters.toggle()
                         } label: {
                             Image(systemName: "line.3.horizontal.decrease.circle")
                         }
@@ -41,27 +44,34 @@ struct ContentView: View {
                     }
                     .foregroundColor(.primary)
                     
-                    LazyVGrid(columns: [GridItem()], spacing: 20) {
+                    LazyVGrid(columns: [GridItem()]) {
                         ForEach(data, id: \.self) { item in
                             CardView()
-                                .padding()
+                                .padding(.top)
                         }
-                        
                     }
                 }
                 .navigationTitle(main ? "XKCD Reader" : "Favorites")
                 .toolbar {
                     ToolbarItem(placement: .navigationBarTrailing) {
                         Button {
-                            //Modal
+                            showMenu.toggle()
                         } label: {
                             Image(systemName: "ellipsis.circle")
                                 .foregroundColor(.primary)
-                            
                         }
                     }
                 }
             }
+            .sheet(isPresented: $showMenu) {
+                MenuView()
+            }
+            .sheet(isPresented: $showFilters) {
+                FiltersView()
+            }
+
+
+
         }
     }
 }

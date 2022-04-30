@@ -8,26 +8,23 @@
 import SwiftUI
 
 struct CardView: View {
+    @State var showComic = false
+
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 20)
                 .strokeBorder(.black,lineWidth: 2)
                 .background(RoundedRectangle(cornerRadius: 20).fill(Color.white))
             
-            VStack {
-                HStack {
-                    VStack(alignment: .leading) {
-                        Text("#0000")
-                            .font(.title3)
-            
-                        Text("Title")
-                            .font(.title)
-                    }
-                    
-                    Spacer()
-                }
-                .foregroundColor(.black)
-                .padding()
+            VStack(alignment: .leading) {
+                Text("#0000")
+                    .font(.title3)
+                    .padding([.top,.horizontal])
+                
+                Text("Title")
+                    .font(.title)
+                    .foregroundColor(.black)
+                    .padding([.bottom, .horizontal])
                 
                 ZStack {
                     Image("security")
@@ -43,7 +40,7 @@ struct CardView: View {
                             Spacer()
                             
                             Button {
-                                // Modal
+                                    showComic.toggle()
                             } label: {
                                 Image(systemName: "chevron.right.circle.fill")
                                     .resizable()
@@ -58,8 +55,11 @@ struct CardView: View {
                 }
             }
         }
-        .padding()
-        .frame(width: UIScreen.main.bounds.width, height: 300)
+        .padding(.horizontal)
+        .frame(width: UIScreen.main.bounds.width)
+        .fullScreenCover(isPresented: $showComic) {
+            ComicView(showComic: $showComic)
+        }
     }
 }
 
