@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct ComicView: View {
+    @Binding var comic: Comic
     @Binding var showComic: Bool
-    
     var body: some View {
         ZStack {
             VStack(spacing:0) {
-                ComicContentsView()
+                ComicContentsView(comic: $comic)
                 Spacer()
                 Divider()
                 ComicFooterView()
@@ -26,31 +26,36 @@ struct ComicView: View {
 
 
 struct ComicContentsView: View {
+    @Binding var comic: Comic
+
     var body: some View {
         ScrollView {
             VStack(alignment: .leading) {
                 Group {
-                    Text("Title")
+                    Text(comic.title)
                         .font(.title)
                         .padding(.top)
                     
-                    Text("#0000")
+                    Text(verbatim: "#\(comic.num)")
                         .font(.title3)
                         .padding(.bottom)
                 }
-                
-                Image("security")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .padding()
-                
-                
-                Text("Date: ")
-                    .bold()
+                AsyncImage(url: URL(string: comic.img), content: { image in
+                    image.resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .padding()
+                }, placeholder: {
+                    Image("placeholder")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .padding()
+                })
+        
+                Text("**Date:** \(comic.formatDate().formatted(date: .abbreviated, time: .omitted))")
                 
                 Divider()
                 
-                SpoilerTextView(title: "Alt Text", content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse at eleifend nibh. Ut ac metus lacus. Mauris eu odio in dolor ultrices faucibus eu eget erat.")
+                SpoilerTextView(title: "Alt Text", content: comic.alt)
                 
                 Divider()
                 
@@ -58,8 +63,14 @@ struct ComicContentsView: View {
                 
                 Divider()
                 
+                HStack(alignment: .top) {
                 Text("Link: ")
                     .bold()
+                    Link(comic.link ?? "Not Available", destination: comic.findLink())
+                        .disabled(comic.link == nil)
+                        .truncationMode(.middle)
+                        .lineLimit(1)
+                }
                 
                 Spacer()
                 
@@ -157,11 +168,5 @@ struct SpoilerTextView: View {
         .onTapGesture {
             hidden = false
         }
-    }
-}
-
-struct ComicView_Previews: PreviewProvider {
-    static var previews: some View {
-        ComicView(showComic: .constant(true))
     }
 }

@@ -15,7 +15,7 @@ class Comics: ObservableObject {
     let decoder = JSONDecoder()
     let encoder = JSONEncoder()
     
-    var comics: [Comic] = []
+    @Published var comics: [Comic] = []
     
     var latestComicPublished: Int = 2613 // Hardcoded as a failsafe.
     var latestComicSaved: Int?
@@ -59,7 +59,7 @@ class Comics: ObservableObject {
         }
     }
     
-    func fetchComics(amount: Int) async {
+    @MainActor func fetchComics(amount: Int) async {
         var fetchFrom: Int
         var urlComponents = URLComponents(string: "https://xkcd.com/")!
         
@@ -101,7 +101,7 @@ class Comics: ObservableObject {
         }
     }
     
-    func fetchLatest() async -> Int {
+    @MainActor func fetchLatest() async -> Int {
         // Returns the number of the latest comic published on the website
         let urlComponents = URLComponents(string: "https://xkcd.com/info.0.json")!
         
@@ -125,7 +125,7 @@ class Comics: ObservableObject {
         return latestComicPublished
     }
     
-    func updateWithNewest() async {
+    @MainActor func updateWithNewest() async {
         // Fetches the newest comics that have been added since the last time.
         print("Updating with newest")
         

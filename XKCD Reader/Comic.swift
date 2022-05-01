@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Comic: Decodable, Encodable {
+struct Comic: Decodable, Encodable, Hashable {
     var title: String
     var safe_title: String
     var num: Int
@@ -21,6 +21,16 @@ struct Comic: Decodable, Encodable {
     
     var img: String
     var link: String?
+    
+    func formatDate() -> Date {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd/MM/yy"
+        return dateFormatter.date(from: "\(day)/\(month)/\(year)")!
+    }
+    
+    func findLink() -> URL {
+        URL(string: link ?? "https://xkcd.com/") ?? URL(string: "https://xkcd.com/")!
+    }
 }
 
 

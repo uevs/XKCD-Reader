@@ -9,9 +9,8 @@ import SwiftUI
 
 struct CardView: View {
     @State var showComic = false
+    @State var comic: Comic
     
-    @EnvironmentObject var comics: Comics
-
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 20)
@@ -19,21 +18,28 @@ struct CardView: View {
                 .background(RoundedRectangle(cornerRadius: 20).fill(Color.white))
             
             VStack(alignment: .leading) {
-                Text("#0000")
+                Text(verbatim: "#\(comic.num)")
                     .font(.title3)
                     .padding([.top,.horizontal])
                 
-                Text("Title")
+                Text(comic.title)
                     .font(.title)
                     .foregroundColor(.black)
                     .padding([.bottom, .horizontal])
                 
                 ZStack {
-                    Image("security")
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .frame(maxHeight: 200)
-                        .padding()
+                    AsyncImage(url: URL(string: comic.img), content: { image in
+                        image.resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .padding()
+                    }, placeholder: {
+                        Image("placeholder")
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(maxHeight: 200)
+                            .padding()
+                    })
+   
                     
                     VStack {
                         Spacer()
@@ -43,10 +49,6 @@ struct CardView: View {
                             
                             Button {
                                     showComic.toggle()
-                                Task {
-                                    await comics.fetchComics(amount: 10)
-                                    
-                                }
                             } label: {
                                 Image(systemName: "chevron.right.circle.fill")
                                     .resizable()
@@ -64,13 +66,7 @@ struct CardView: View {
         .padding(.horizontal)
         .frame(width: UIScreen.main.bounds.width)
         .fullScreenCover(isPresented: $showComic) {
-            ComicView(showComic: $showComic)
+            ComicView(comic: $comic, showComic: $showComic)
         }
-    }
-}
-
-struct CardView_Previews: PreviewProvider {
-    static var previews: some View {
-        CardView()
     }
 }

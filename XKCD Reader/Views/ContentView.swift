@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @EnvironmentObject var comics: Comics
+    
     @State var main: Bool
     @State var sortLastFirst: Bool = true
     @State var showMenu = false
@@ -45,8 +48,8 @@ struct ContentView: View {
                     .foregroundColor(.primary)
                     
                     LazyVGrid(columns: [GridItem()]) {
-                        ForEach(data, id: \.self) { item in
-                            CardView()
+                        ForEach(comics.comics, id: \.self) { comic in
+                            CardView(comic: comic)
                                 .padding(.top)
                         }
                     }
@@ -69,11 +72,7 @@ struct ContentView: View {
             .sheet(isPresented: $showFilters) {
                 FiltersView()
             }
-
-
-
         }
         .navigationViewStyle(.stack)
-
     }
 }
