@@ -53,6 +53,24 @@ struct ContentView: View {
                                 .padding(.top)
                         }
                     }
+                    
+                    Button {
+                        Task {
+                            await comics.fetchComics(amount: 10)
+                        }
+                    } label: {
+                        ZStack {
+                            RoundedRectangle(cornerRadius: 20)
+                                .strokeBorder(.black,lineWidth: 2)
+                                .background(RoundedRectangle(cornerRadius: 20).fill(Color.accentColor))
+                            Text("Give me more!")
+                                .font(.title3).bold()
+                                .foregroundColor(.white)
+                                .padding()
+                        }
+                    }
+                    .padding()
+
                 }
                 .navigationTitle(main ? "XKCD Reader" : "Favorites")
                 .toolbar {
