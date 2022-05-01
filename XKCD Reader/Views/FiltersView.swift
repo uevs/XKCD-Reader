@@ -1,6 +1,6 @@
 //
 //  FiltersView.swift
-//  ShortcutChallenge
+//  XKCD Reader
 //
 //  Created by leonardo on 30/04/22.
 //

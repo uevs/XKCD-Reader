@@ -1,19 +1,20 @@
 //
 //  Comic.swift
-//  ShortcutChallenge
+//  XKCD Reader
 //
 //  Created by leonardo on 12/04/22.
 //
 
 import Foundation
 
-struct Comic {
+struct Comic: Decodable, Encodable {
     var title: String
-    var number: Int
+    var safe_title: String
+    var num: Int
     var alt: String
+    var news: String?
     var transcript: String?
-    var explanation: String?
-    
+
     var day: String
     var month: String
     var year: String

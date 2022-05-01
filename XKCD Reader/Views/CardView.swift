@@ -1,6 +1,6 @@
 //
 //  CardView.swift
-//  ShortcutChallenge
+//  XKCD Reader
 //
 //  Created by leonardo on 29/04/22.
 //
@@ -9,6 +9,8 @@ import SwiftUI
 
 struct CardView: View {
     @State var showComic = false
+    
+    @EnvironmentObject var comics: Comics
 
     var body: some View {
         ZStack {
@@ -41,6 +43,10 @@ struct CardView: View {
                             
                             Button {
                                     showComic.toggle()
+                                Task {
+                                    await comics.fetchComics(amount: 10)
+                                    
+                                }
                             } label: {
                                 Image(systemName: "chevron.right.circle.fill")
                                     .resizable()

@@ -1,6 +1,6 @@
 //
 //  MainView.swift
-//  ShortcutChallenge
+//  XKCD Reader
 //
 //  Created by leonardo on 12/04/22.
 //
@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct MainView: View {
+    @StateObject var comics = Comics()
     
     var body: some View {
         TabView {
@@ -21,6 +22,8 @@ struct MainView: View {
                     Label("Favorites", systemImage: "star")
                 }
         }
+        .environmentObject(comics)
+        
     }
 }
 

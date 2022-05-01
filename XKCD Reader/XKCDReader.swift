@@ -1,6 +1,6 @@
 //
-//  ShortcutChallengeApp.swift
-//  ShortcutChallenge
+//  XKCDReader.swift
+//  XKCD Reader
 //
 //  Created by leonardo on 12/04/22.
 //
@@ -8,7 +8,7 @@
 import SwiftUI
 
 @main
-struct ShortcutChallengeApp: App {
+struct XKCDReader: App {
     var body: some Scene {
         WindowGroup {
             MainView()

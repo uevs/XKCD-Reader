@@ -1,6 +1,6 @@
 //
 //  ContentView.swift
-//  ShortcutChallenge
+//  XKCD Reader
 //
 //  Created by leonardo on 12/04/22.
 //
@@ -73,5 +73,7 @@ struct ContentView: View {
 
 
         }
+        .navigationViewStyle(.stack)
+
     }
 }
