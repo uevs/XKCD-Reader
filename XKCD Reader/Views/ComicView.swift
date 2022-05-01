@@ -30,6 +30,7 @@ struct ComicView: View {
 struct ComicContentsView: View {
     @Binding var comic: Comic
     @EnvironmentObject var comics: Comics
+    @State var fullImage: Bool = false
 
 
     var body: some View {
@@ -54,6 +55,10 @@ struct ComicContentsView: View {
                         .aspectRatio(contentMode: .fit)
                         .padding()
                 })
+                .onTapGesture {
+                    fullImage.toggle()
+                }
+   
         
                 Text("**Date:** \(comic.formatDate().formatted(date: .abbreviated, time: .omitted))")
                 
@@ -63,7 +68,7 @@ struct ComicContentsView: View {
                 
                 Divider()
                 
-                SpoilerTextView(title: "Explanation", content: "Curabitur aliquet purus justo, nec malesuada velit iaculis eget. Sed non dignissim magna, id suscipit velit. Suspendisse est sapien, hendrerit vitae dui vitae, finibus tempus leo. Vivamus leo leo, suscipit sit amet arcu quis, maximus bibendum enim. In commodo, mauris a euismod facilisis, elit metus elementum quam, eu tincidunt lacus erat quis purus. Pellentesque non varius lectus. Maecenas eu varius leo, sit amet sodales ex. Aliquam erat volutpat.")
+                SpoilerTextView(title: "Explanation", content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus dictum vestibulum tempor. Morbi sit amet volutpat diam. Ut consequat luctus mauris congue laoreet. In molestie diam risus, imperdiet vulputate nulla laoreet vel. Nulla vitae eleifend tortor. Integer mi lectus, suscipit id maximus sed, congue nec erat. Ut nec hendrerit velit. Curabitur vehicula blandit ligula non vehicula. Donec a lacinia nisl. Nulla feugiat elit nec ultricies finibus.")
                 
                 Divider()
                 
@@ -81,6 +86,9 @@ struct ComicContentsView: View {
             }
             .padding(.horizontal)
             
+        }
+        .fullScreenCover(isPresented: $fullImage) {
+            FullScreenView(dismiss: $fullImage, comic: $comic)
         }
     }
 }
