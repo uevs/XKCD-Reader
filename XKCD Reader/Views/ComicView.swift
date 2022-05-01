@@ -92,7 +92,11 @@ struct ComicFooterView: View {
     var body: some View {
         HStack {
             Button {
-                // back
+                withAnimation {
+                    if comics.comics.firstIndex(of: comic) != 0 {
+                        comic = comics.comics.filter({$0.num == comic.num+1})[0]
+                    }                    
+                }
             } label: {
                 Image(systemName: "chevron.left")
                     .resizable()
@@ -116,7 +120,12 @@ struct ComicFooterView: View {
             .padding()
             
             Button {
-                // forward
+                withAnimation {
+                    if comics.comics.firstIndex(of: comic) != comics.comics.endIndex-1 {
+                        comic = comics.comics.filter({$0.num == comic.num-1})[0]
+                    }
+                    
+                }
             } label: {
                 Image(systemName: "chevron.right")
                     .resizable()

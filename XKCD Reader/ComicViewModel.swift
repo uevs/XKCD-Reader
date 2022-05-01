@@ -193,6 +193,7 @@ class Comics: ObservableObject {
             print("Cant Encode")
         }
     }
+    
 }
 
 
