@@ -10,13 +10,15 @@ import SwiftUI
 struct ComicView: View {
     @Binding var comic: Comic
     @Binding var showComic: Bool
+    @EnvironmentObject var comics: Comics
+    
     var body: some View {
         ZStack {
             VStack(spacing:0) {
                 ComicContentsView(comic: $comic)
                 Spacer()
                 Divider()
-                ComicFooterView()
+                ComicFooterView(comic: $comic)
             }
             DismissButtonView(showComic: $showComic)
         }
@@ -27,6 +29,8 @@ struct ComicView: View {
 
 struct ComicContentsView: View {
     @Binding var comic: Comic
+    @EnvironmentObject var comics: Comics
+
 
     var body: some View {
         ScrollView {
@@ -82,6 +86,9 @@ struct ComicContentsView: View {
 }
 
 struct ComicFooterView: View {
+    @EnvironmentObject var comics: Comics
+    @Binding var comic: Comic
+
     var body: some View {
         HStack {
             Button {
@@ -95,9 +102,13 @@ struct ComicFooterView: View {
             .padding()
             
             Button {
-                // favorite
+                if comic.isFavorite(favorites: comics.favorites) {
+                    comics.removeFromFavorites(comic: comic)
+                } else {
+                    comics.saveToFavorites(comic: comic)
+                }
             } label: {
-                Image(systemName: "star")
+                Image(systemName: comic.isFavorite(favorites: comics.favorites) ? "star.fill" : "star")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 30)

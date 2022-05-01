@@ -16,9 +16,6 @@ struct ContentView: View {
     @State var showMenu = false
     @State var showFilters = false
 
-    
-    let data = (1...500).map { "Item \($0)" }
-    
     var body: some View {
         NavigationView {
             ZStack {
@@ -48,9 +45,17 @@ struct ContentView: View {
                     .foregroundColor(.primary)
                     
                     LazyVGrid(columns: [GridItem()]) {
-                        ForEach(comics.comics, id: \.self) { comic in
-                            CardView(comic: comic)
-                                .padding(.top)
+                        
+                        if main {
+                            ForEach(comics.comics, id: \.self) { comic in
+                                CardView(comic: comic)
+                                    .padding(.top)
+                            }
+                        } else {
+                            ForEach(comics.favorites, id: \.self) { comic in
+                                CardView(comic: comic)
+                                    .padding(.top)
+                            }
                         }
                     }
                     
@@ -69,6 +74,7 @@ struct ContentView: View {
                                 .padding()
                         }
                     }
+                    .opacity(main ? 1 : 0)
                     .padding()
 
                 }

@@ -16,6 +16,7 @@ class Comics: ObservableObject {
     let encoder = JSONEncoder()
     
     @Published var comics: [Comic] = []
+    @Published var favorites: [Comic] = []
     
     var latestComicPublished: Int = 2613 // Hardcoded as a failsafe.
     var latestComicSaved: Int?
@@ -47,6 +48,15 @@ class Comics: ObservableObject {
                     await updateWithNewest()
                 }
             }
+            
+            if let favs = UserDefaults.standard.data(forKey: "favorites") {
+                if let decoded = try? decoder.decode([Comic].self, from: favs) {
+                    favorites = decoded
+                } else {
+                    print("Can't Decode")
+                }
+            }
+            
             
         } else {
             print("No comics found")
@@ -155,6 +165,30 @@ class Comics: ObservableObject {
             UserDefaults.standard.set(updatedComics, forKey: "comics")
             print("Saved comics")
             print(comics.map { $0.num })
+        } else {
+            print("Cant Encode")
+        }
+    }
+    
+    func saveToFavorites(comic: Comic) {
+        favorites.append(comic)
+        
+        if let favs = try? encoder.encode(favorites) {
+            UserDefaults.standard.set(favs, forKey: "favorites")
+            print("Saved favorites")
+            print(favorites.map { $0.num })
+        } else {
+            print("Cant Encode")
+        }
+    }
+    
+    func removeFromFavorites(comic: Comic) {
+        favorites.removeAll(where: {$0.num == comic.num})
+        
+        if let favs = try? encoder.encode(favorites) {
+            UserDefaults.standard.set(favs, forKey: "favorites")
+            print("Saved favorites")
+            print(favorites.map { $0.num })
         } else {
             print("Cant Encode")
         }

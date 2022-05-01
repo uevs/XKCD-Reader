@@ -31,6 +31,13 @@ struct Comic: Decodable, Encodable, Hashable {
     func findLink() -> URL {
         URL(string: link ?? "https://xkcd.com/") ?? URL(string: "https://xkcd.com/")!
     }
+    
+    func isFavorite(favorites: [Comic]) -> Bool {
+        if favorites.contains(where: {$0.num == self.num}) {
+            return true
+        }
+        return false
+    }
 }
 
 
