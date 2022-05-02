@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct CardView: View {
+    /// The card is used inside the LazyVGrid and displays the comic title, number and image preview. Can be tapped to access the comic details
+    
     @State var showComic = false
     @State var comic: Comic
     
@@ -39,7 +41,6 @@ struct CardView: View {
                             .frame(maxHeight: 200)
                             .padding()
                     })
-   
                     
                     VStack {
                         Spacer()

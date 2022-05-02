@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct FiltersView: View {
+    /// Will contain the filters
+    
     var body: some View {
         Text("Hello, Filters!")
     }

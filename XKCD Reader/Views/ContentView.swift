@@ -8,14 +8,16 @@
 import SwiftUI
 
 struct ContentView: View {
+    /// The main area of the app, can display both all comics or just favorites
     
+    /// The viewmodel for the app logic
     @EnvironmentObject var comics: Comics
     
     @State var main: Bool
     @State var sortLastFirst: Bool = true
     @State var showMenu = false
     @State var showFilters = false
-
+    
     var body: some View {
         NavigationView {
             ZStack {
@@ -44,18 +46,11 @@ struct ContentView: View {
                     }
                     .foregroundColor(.primary)
                     
+                    /// Comics are displayed here and fetched from the environmentobject's array
                     LazyVGrid(columns: [GridItem()]) {
-                        
-                        if main {
-                            ForEach(comics.comics, id: \.self) { comic in
-                                CardView(comic: comic)
-                                    .padding(.top)
-                            }
-                        } else {
-                            ForEach(comics.favorites, id: \.self) { comic in
-                                CardView(comic: comic)
-                                    .padding(.top)
-                            }
+                        ForEach(main ? comics.comics : comics.favorites, id: \.self) { comic in
+                            CardView(comic: comic)
+                                .padding(.top)
                         }
                     }
                     
@@ -76,7 +71,7 @@ struct ContentView: View {
                     }
                     .opacity(main ? 1 : 0)
                     .padding()
-
+                    
                 }
                 .navigationTitle(main ? "XKCD Reader" : "Favorites")
                 .toolbar {

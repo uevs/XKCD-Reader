@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct MenuView: View {
+    /// Will contain the menu
+    
     var body: some View {
         Text("Hello, Menu!")
     }

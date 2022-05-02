@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct MainView: View {
+    /// Viewmodel is instantiated here and passed as environment object
     @StateObject var comics = Comics()
     
     var body: some View {

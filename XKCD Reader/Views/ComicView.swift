@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ComicView: View {
+    /// Shows all the details about the comic.
+    
     @Binding var comic: Comic
     @Binding var showComic: Bool
     @EnvironmentObject var comics: Comics
@@ -28,6 +30,8 @@ struct ComicView: View {
 
 
 struct ComicContentsView: View {
+    ///  The main content area of the ComicView
+    
     @Binding var comic: Comic
     @EnvironmentObject var comics: Comics
     @State var fullImage: Bool = false
@@ -68,6 +72,7 @@ struct ComicContentsView: View {
                 
                 Divider()
                 
+                // TODO:  fetch explanation
                 SpoilerTextView(title: "Explanation", content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus dictum vestibulum tempor. Morbi sit amet volutpat diam. Ut consequat luctus mauris congue laoreet. In molestie diam risus, imperdiet vulputate nulla laoreet vel. Nulla vitae eleifend tortor. Integer mi lectus, suscipit id maximus sed, congue nec erat. Ut nec hendrerit velit. Curabitur vehicula blandit ligula non vehicula. Donec a lacinia nisl. Nulla feugiat elit nec ultricies finibus.")
                 
                 Divider()
@@ -94,6 +99,8 @@ struct ComicContentsView: View {
 }
 
 struct ComicFooterView: View {
+    /// The footer of ComicView contains the favourite, next, previous buttons.
+    
     @EnvironmentObject var comics: Comics
     @Binding var comic: Comic
 
@@ -149,6 +156,8 @@ struct ComicFooterView: View {
 }
 
 struct DismissButtonView: View {
+    /// The overlay containing the button to dismiss the view
+    
     @Binding var showComic: Bool
     
     var body: some View {
@@ -173,7 +182,9 @@ struct DismissButtonView: View {
 }
 
 struct SpoilerTextView: View {
-    @State private var hidden: Bool = true
+    /// A text view hiding the content until the user taps on it.
+    
+    @State var hidden: Bool = true
     @State var title: String
     @State var content: String
     
@@ -190,8 +201,10 @@ struct SpoilerTextView: View {
             } else {
                 Text(content)
             }
-            
-            
+        }
+        .onAppear {
+            // FIXME: app doesn't update this while switching comics with buttons
+            hidden = true
         }
         .onTapGesture {
             hidden = false

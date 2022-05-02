@@ -11,10 +11,13 @@ import SwiftUI
 
 
 class Comics: ObservableObject {
+    /// The app ViewModel responsible for making API calls, storing and loading data from UserDefaults.
+    /// The fetched comics JSON files are stored on UserDefaults to ensure no useless API calls are made, once they have been fetched once they are not going to be fetched again.
     
     let decoder = JSONDecoder()
     let encoder = JSONEncoder()
     
+    /// Comics and favorites are retrieved from the API or UserDefaults and are stored here at runtime.
     @Published var comics: [Comic] = []
     @Published var favorites: [Comic] = []
     
@@ -23,7 +26,7 @@ class Comics: ObservableObject {
     
     init() {
         
-        // Checks if there are comics stored, if so it decodes them and loades them in the comics array
+        /// Checks if there are comics stored, if so it decodes them and loades them in the comics array
         if let comicsStored = UserDefaults.standard.data(forKey: "comics") {
             print("Found comics")
             latestComicPublished = UserDefaults.standard.integer(forKey: "latestComicPublished")
@@ -38,7 +41,7 @@ class Comics: ObservableObject {
                 print("Can't decode stored comics.")
             }
             
-            // Checks if new comics have been published since the last opening of the app
+            /// Checks if new comics have been published since the last opening of the app and updates the array
             Task {
                 let currentLast = await fetchLatest()
                 
@@ -49,6 +52,7 @@ class Comics: ObservableObject {
                 }
             }
             
+            /// Loads the favorite comics if there are any
             if let favs = UserDefaults.standard.data(forKey: "favorites") {
                 if let decoded = try? decoder.decode([Comic].self, from: favs) {
                     favorites = decoded
@@ -60,7 +64,7 @@ class Comics: ObservableObject {
             
         } else {
             print("No comics found")
-            // No comics are found, so it fetches the newest 10
+            /// No comics are found in UserDefaults, so it fetches the latest 10.
             Task {
                 latestComicPublished = await fetchLatest()
                 UserDefaults.standard.set(latestComicPublished, forKey: "latestComicPublished")
@@ -70,9 +74,12 @@ class Comics: ObservableObject {
     }
     
     @MainActor func fetchComics(amount: Int) async {
+        /// Fetches the required amount of comics and stores them both on the array and on the UserDefaults
+        
         var fetchFrom: Int
         var urlComponents = URLComponents(string: "https://xkcd.com/")!
         
+        /// Checks if it's the first time fetching comics
         if comics.isEmpty {
             fetchFrom = await fetchLatest()
         } else {
@@ -89,6 +96,7 @@ class Comics: ObservableObject {
                 
                 guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else { print("Bad response: \(response)"); return}
                 
+                /// Comics are decoded and saved to to the array. It also stores the current comic as the last saved so that if the next doesn't gets trrough (bad response, low connectivity) it will resume from this next time
                 if let comic = try? decoder.decode(Comic.self, from: data) {
                     comics.append(comic)
                     latestComicSaved = comic.num
@@ -102,6 +110,7 @@ class Comics: ObservableObject {
                 print(error)
             }
         }
+        /// The updated array is stored on UserDefaults
         if let updatedComics = try? encoder.encode(comics) {
             UserDefaults.standard.set(updatedComics, forKey: "comics")
             print("Saved comics")
@@ -112,7 +121,7 @@ class Comics: ObservableObject {
     }
     
     @MainActor func fetchLatest() async -> Int {
-        // Returns the number of the latest comic published on the website
+        /// Returns the number of the latest comic published on the website
         let urlComponents = URLComponents(string: "https://xkcd.com/info.0.json")!
         
         do {
@@ -136,7 +145,7 @@ class Comics: ObservableObject {
     }
     
     @MainActor func updateWithNewest() async {
-        // Fetches the newest comics that have been added since the last time.
+        /// Fetches the newest comics that have been added to the website.
         print("Updating with newest")
         
         var urlComponents = URLComponents(string: "https://xkcd.com/")!
@@ -171,6 +180,7 @@ class Comics: ObservableObject {
     }
     
     func saveToFavorites(comic: Comic) {
+        /// Saves a comic to the favorites and updates the stored data on UserDefaults
         favorites.append(comic)
         
         if let favs = try? encoder.encode(favorites) {
@@ -183,6 +193,7 @@ class Comics: ObservableObject {
     }
     
     func removeFromFavorites(comic: Comic) {
+        /// Removes a comic from the favorites and updates the stored data on UserDefaults
         favorites.removeAll(where: {$0.num == comic.num})
         
         if let favs = try? encoder.encode(favorites) {

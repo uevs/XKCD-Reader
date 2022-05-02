@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct FullScreenView: View {
+    /// Shows the comic in fullscreen. Should have a zoom implementation in the future.
+    
     @Binding var dismiss: Bool
     @Binding var comic: Comic
     @State var scale: CGFloat = 1
